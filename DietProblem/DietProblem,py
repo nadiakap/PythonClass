@@ -1,0 +1,25 @@
+import scipy.optimize as sopt
+from numpy import genfromtxt
+import numpy as np
+
+# Read data
+data_file = 'DietDB.csv'
+my_data = genfromtxt(data_file, delimiter = ',')
+
+A=my_data[0:my_data.shape[0]-1,0:my_data.shape[1]-1]
+A=np.array(A)
+
+b=my_data[0:my_data.shape[0]-1,my_data.shape[1]-1:my_data.shape[1]]
+b=np.array(b)
+b=b.flatten()
+
+c=my_data[my_data.shape[0]-1:my_data.shape[0],0:my_data.shape[1]-1]
+c=np.array(c)
+c=c.flatten()
+
+bounds = (0, 7)
+bounds = (bounds,bounds,bounds,bounds,bounds,bounds)
+
+res=sopt.linprog(c,A_ub=A,b_ub=b,bounds=bounds)
+
+print ('optimal diet:', res)
