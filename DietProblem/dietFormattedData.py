@@ -20,9 +20,19 @@ bounds1 = (0, 3)
 bounds2 = (0, 7)
 bounds = (bounds,bounds,bounds,bounds1,bounds,bounds2)
 res=sopt.linprog(c,A_ub=A_ub,b_ub=b_ub,bounds=bounds)
+print ('**********************************************************')   
 print ('cost of daily meal, optimized:', res.fun)
+print ('**********************************************************')   
 print ('here is the meal plan ( number of servings of each food):')
-for i in range(len(df_A.columns)):
+for i in range(len(df_A.index)):
     print (df_A.index[i], ':', res.x[i])
+
+print ('**********************************************************')    
+print ('you are getting these nutrients:')    
+for j in range(len(df_A.columns)):
+    nutrient_j = 0.0
+    for i in range(len(df_A.index)):
+        nutrient_j += A[j,i]*res.x[i]
+    print (df_A.columns[j] , ':', nutrient_j)    
 
 
