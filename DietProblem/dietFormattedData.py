@@ -21,5 +21,8 @@ bounds2 = (0, 7)
 bounds = (bounds,bounds,bounds,bounds1,bounds,bounds2)
 res=sopt.linprog(c,A_ub=A_ub,b_ub=b_ub,bounds=bounds)
 print ('cost of daily meal, optimized:', res.fun)
-print ('number of servings for each food', res.x)
+print ('here is the meal plan ( number of servings of each food):')
+for i in range(len(df_A.columns)):
+    print (df_A.index[i], ':', res.x[i])
+
 
