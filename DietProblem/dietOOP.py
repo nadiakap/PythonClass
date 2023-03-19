@@ -19,7 +19,7 @@ class Diet():
         
         A_lower = -A
         A_ub = np.vstack([A,A_lower])
-        b_ub = np.vstack([b,b_lower])
+        b_ub = np.vstack([b,b_lower]).flatten()
         
         bounds = (0, 4)
         bounds1 = (0, 3)
