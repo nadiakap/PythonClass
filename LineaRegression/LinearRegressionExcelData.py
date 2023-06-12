@@ -4,7 +4,7 @@ from numpy import genfromtxt
 #import numpy as np
 #import xlswriter
 
-import statsmodels.formula.api as os
+import statsmodels.api as os
 
 data_file = 'AppleInputData.csv'
 #C:/Users/udlern/DesktopAppleInputData.csv
